@@ -1,10 +1,12 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express= require('express');
 const bodyParser= require('body-parser');
 const mongoose = require('mongoose');
 const ItemRoutes = require('./routes/Items')
 
 
-mongoose.connect('mongodb://GChivas:smitty5smitty5@cluster0-shard-00-00-e2mbo.mongodb.net:27017,cluster0-shard-00-01-e2mbo.mongodb.net:27017,cluster0-shard-00-02-e2mbo.mongodb.net:27017/mernshoppinglist?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',{useNewUrlParser: true}).then(console.log("Connected to database.."))
+mongoose.connect(process.env.mongodburi,{useNewUrlParser: true}).then(console.log("Connected to database.."))
 .catch(err=>console.log(err))
 mongoose.set('useFindAndModify', false);
 let app = express();
